@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="fr" id="lang">
+
+<head>
+    <!--Google Font Ubuntu Mono-->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&amp;display=swap" rel="stylesheet">
+
+    <!--Google Font Rampart One-->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rampart+One&amp;display=swap" rel="stylesheet">
+
+    <!--Google Font Dela Gothic One-->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&amp;family=Rampart+One&amp;display=swap"
+        rel="stylesheet">
+
+    <!--Lien vers CSS-->
+    <link href="style/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Anthony La Barbera</title>
+
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="public/images/favicon.png" type="image/x-icon">
+    <!-- iPhone Retina Bookmark Icon -->
+    <link rel="apple-touch-icon" sizes="120x120" href="public/images/favicon-apple1.png">
+    <!-- iPad Retina Bookmark Icon -->
+    <link rel="apple-touch-icon" sizes="152x152" href="public/images/favicon-apple1.png">
+    <!-- iPhone X Retina Bookmark Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="public/images/favicon-apple1.png">
+    <!-- Apple Safari Pinned Tab Icon -->
+    <link rel="mask-icon" href="public/images/favicon-apple1.png" color="#fff">
+
+    <!-- IOS APP LAUNCH -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Portfolio Anthony La Barbera">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-startup-image" href="public/images/favicon-apple1.png"
+        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+    <!-- THREE JS CDN -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.157.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- JS COMPRESSÉ -->
+    <script type="module" crossorigin src="assets/compressed.js" defer></script>
+
+    <!-- JS NON COMPRESSÉ -->
+    <script type="module" crossorigin src="assets/translate.js" defer></script>
+
+
+    <!-- JS 3D THREE JS" -->
+    <script type="module" crossorigin src="assets/Background-darkMode-scrollBar.js" defer></script>
+    <script type="module" crossorigin src="assets/smartphone-3d-person.js" defer></script>
+    <script type="module" crossorigin src="assets/3d-person.js" defer></script>
+
+</head>
+
+<body class="light-theme">
+
+    <!-- Loading Page -->
+    <div class="loader">
+        <div class="spinner"></div>
+        <p>please wait</p>
+    </div>
+
+
+    <!--3D background-->
+    <div id="canvas-container">
+        <canvas id="background"></canvas>
+        <div id="overlay"></div>
+    </div>
+
+    <!-- MUSIC PLAYER -->
+    <div class="player-bg" id="player-bg"></div>
+    <div class="echo-container" id="echo-container">
+        <div class="echo">
+            <div class="inner-echo"></div>
+        </div>
+        <div class="echo echo2">
+            <div class="inner-echo"></div>
+        </div>
+    </div>
+    <div class="music-container" id="music-container">
+        <i id="close-tab" class="fa-regular fa-circle-xmark"></i>
+        <img src="public/images/nujabes_1.jpg" class="album-cover" id="album-cover" alt="">
+        <div class="titre">
+            <p id="music-title">Aruarian Dance</p>
+            <p class="artiste">NUJABES</p>
+        </div>
+        <div class="time-line">
+            <span id="current-time">0:00</span>
+            <input type="range" id="progress" value="0">
+            <span id="remaining-time">0:00</span>
+        </div>
+        <div class="controls">
+            <div>
+                <i class="fa-solid fa-backward-step" id="back-song"></i>
+                <i class="fa-solid fa-play" id="play"></i>
+                <i class="fa-solid fa-forward-step" id="next-song"></i>
+            </div>
+        </div>
+        <audio controls id="music-player" class="music-player">
+            <source src="public/sounds/Nujabes%20-%20Aruarian%20Dance.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+
+
+
+
+    <!--Header-->
+    <header id="home">
+
+        <div class="container">
+            <div class="logo-container">
+                <a href="#home">
+                    <div class="logo"></div>
+                </a>
+            </div>
+
+            <nav id="navbar">
+                <ul class="nav-bar-links">
+                    <li><a class="btn" id="titre-propos" href="#propos">À Propos</a></li>
+                    <li><a class="btn" id="titre-competences" href="#competences">Compétences</a></li>
+                    <li><a class="btn" id="titre-experiences" href="#experiences">Expériences</a></li>
+                    <li><a class="btn" id="titre-formations" href="#formations">Formations</a></li>
+                    <li><a class="btn" id="titre-projets" href="#projets">Projets</a></li>
+                    <li><a class="btn" id="titre-contact" href="#contact">Contactez-moi</a></li>
+                </ul>
+                <img src="public/images/moon.png" class="lighticons" id="lighticon" alt="dark-mode-icon">
+
+                <!-- Change Language -->
+                <div class="change-language" id="change-language">
+                    <p class="change-language-icon"><i class="fa-solid fa-language"></i>fr</p>
+                </div>
+
+
+
+                <div class="smartphone-bar" id="smartphone-bar">
+                    <ul id="nav-bar-scroll">
+                        <li class="smartphone-title-container">
+                            <a id="smartphone-bar-propos" href="#smartphone-bar-propos-link">À Propos</a>
+                        </li>
+                        <li class="smartphone-line-container">
+                            <div class="horizontal-line"></div>
+                        </li>
+                        <li class="smartphone-title-container">
+                            <a id="smartphone-bar-coordonnees" href="#smartphone-bar-coordonnees-link">Coordonnées</a>
+                        </li>
+                        <li class="smartphone-line-container">
+                            <div class="horizontal-line"></div>
+                        </li>
+                        <li class="smartphone-title-container">
+                            <a id="smartphone-bar-competences" href="#smartphone-bar-competences-link">Compétences</a>
+                        </li>
+                        <li class="smartphone-line-container">
+                            <div class="horizontal-line"></div>
+                        </li>
+                        <li class="smartphone-title-container">
+                            <a id="smartphone-bar-language" href="#smartphone-bar-language-link">Languages</a>
+                        </li>
+                        <li class="smartphone-line-container">
+                            <div class="horizontal-line"></div>
+                        </li>
+                        <li class="smartphone-title-container">
+                            <a id="smartphone-bar-experiences" href="#smartphone-bar-experiences-link">Expériences</a>
+                        </li>
+                        <li class="smartphone-line-container">
+                            <div class="horizontal-line"></div>
+                        </li>
+                        <li class="smartphone-title-container">
+                            <a id="smartphone-bar-formations" href="#smartphone-bar-formations-link">Formations</a>
+                        </li>
+                        <li class="smartphone-line-container">
+                            <div class="horizontal-line"></div>
+                        </li>
+                        <li class="smartphone-title-container">
+                            <a id="smartphone-bar-projets" href="#smartphone-bar-projets-link">Projets</a>
+                        </li>
+                        <li class="smartphone-line-container">
+                            <div class="horizontal-line"></div>
+                        </li>
+                        <li class="smartphone-title-container">
+                            <a id="smartphone-bar-contact" href="#smartphone-bar-contact-link">Contactez-moi</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+
+
+
+    <main id="scroll-top-link">
+
+        <!-- Scroll TOP -->
+        <div class="scroll-top" id="scroll-top">
+            <a href="#scroll-top-link"><i class="fa-solid fa-arrow-up"></i></a>
+        </div>
+
+
+
+
+        <div id="canvas-person">
+            <canvas id="canvas"></canvas>
+            <h1 id="text-behind">I'm <span class="auto-type"></span></h1>
+        </div>
+
+
+
+        <!--SIDE-BAR-->
+        <div class="side-bar" id="side-bar">
+            <!--Mouse effect-->
+            <span id="circle" class="circle"></span>
+
+            <ul>
+                <li class="title-container">
+                    <a id="side-bar-propos" href="#side-bar-propos-link">À Propos</a>
+                </li>
+                <li class="line-container">
+                    <div class="vertical-line"></div>
+                </li>
+                <li class="title-container">
+                    <a id="side-bar-competences" href="#side-bar-competences-link">Compétences</a>
+                </li>
+                <li class="line-container">
+                    <div class="vertical-line"></div>
+                </li>
+                <li class="title-container">
+                    <a id="side-bar-experiences" href="#side-bar-experiences-link">Expériences</a>
+                </li>
+                <li class="line-container">
+                    <div class="vertical-line"></div>
+                </li>
+                <li class="title-container">
+                    <a id="side-bar-formations" href="#side-bar-formations-link">Formations</a>
+                </li>
+                <li class="line-container">
+                    <div class="vertical-line"></div>
+                </li>
+                <li class="title-container">
+                    <a id="side-bar-projets" href="#side-bar-projets-link">Projets</a>
+                </li>
+                <li class="line-container">
+                    <div class="vertical-line"></div>
+                </li>
+                <li class="title-container">
+                    <a id="side-bar-contact" href="#side-bar-contact-link">Contactez-moi</a>
+                </li>
+            </ul>
+        </div>
+
+
+
+
+        <!--Banner profil-->
+        <div class="profile" data-tilt data-tilt-reverse="true">
+            <!--Mouse effect-->
+            <span id="circle" class="circle"></span>
+            <div id="smartphone-bar-propos-link"></div>
+
+            <div class="avatar" id="side-bar-propos-link">
+                <img src="public/images/avatar-hover.png" alt="avatar" id="avatar">
+            </div>
+
+            <h1 class="name">Anthony La Barbera</h1>
+            <hr>
+            <p class="job-title"> Développeur Full-Stack</p>
+            <div class="sociallink">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/anthony-la-barbera-001146298/" target="_blank"><i class="fab fa-linkedin"
+                                alt="Linkdn logo"></i></a></li>
+                    <li><a href="https://github.com/AnthonyRepo5/Portfolio.git" target="_blank"><i class="fab fa-github"
+                                alt="github logo"></i></a></li>
+                    <li><a href="https://discord.com/" target="_blank"><i class="fab fa-discord"
+                                alt="discord logo"></i></a></li>
+                    <!-- <li><a href="https://www.instagram.com/aden_takehiko/" target="_blank"><i class="fab fa-instagram" alt="instagram logo"></i></a></li> -->
+                </ul>
+            </div>
+            <div class="headerbuttons">
+                <a href="public/documents/CV.pdf" download><button class="downloadbutton"><i
+                            class="fa fa-arrow-circle-down" aria-hidden="true"></i>Télécharger CV</button></a>
+                <a href="tel:+33782686781"><button class="hirebutton"><i class="fa fa-user"
+                            aria-hidden="true"></i>Recrutez-moi</button></a>
+            </div>
+        </div>
+
+
+
+        <div class="propos">
+            <div class="propos-text" id="propos" data-tilt data-tilt-reverse="true">
+                <!--Mouse effect-->
+                <div id="smartphone-bar-coordonnees-link"></div>
+                <span id="circle" class="circle"></span>
+
+                <h2 class="titreSectionPropos" id="side-bar-competences-link">_À Propos</h2>
+                <p class="bio">Un développeur junior curieux, créatif et rigoureux, qui, après avoir développé des
+                    compétences en conception et en méthodologies agiles lors de ses expériences professionnelles
+                    passées, a fait du développement une passion dans sa nouvelle vie. Cela me permet d'exprimer ma
+                    créativité et ma technicité, tout en résolvant des problèmes de manière efficace et innovante, comme
+                    le montrent mon portfolio et les projets qu'il contient.</p>
+            </div>
+
+            <div class="coordonnees" id="coordonnees" data-tilt data-tilt-reverse="true"
+                id="smartphone-bar-coordonnees-link">
+                <!--Mouse effect-->
+                <span id="circle" class="circle"></span>
+
+                <h2 class="titreSectionCoordonnées">_Coordonnées</h2>
+                <div class="row-icon-list">
+                    <ul>
+                        <li><i class="fa-solid fa-envelope" alt="email"></i>
+                            <p class="titre-infos">e-mail</p><a href="mailto:anthonylbrb5@gmail.com" target="_blank"
+                                class="infos-coordonnees">anthonylbrb5@gmail.com</a>
+                        </li>
+                        <li><i class="fa-solid fa-phone" alt="telephone"></i>
+                            <p id="coordonneesPhone" class="titre-infos">Téléphone</p><a href="tel:+33782686781"
+                                target="_blank" class="infos-coordonnees">07 82 68 67 81</a>
+                        </li>
+                        <div id="smartphone-bar-competences-link"></div>
+                        <li><i class="fa-solid fa-location-pin" alt="address"></i>
+                            <p id="coordonneesAdresse" class="titre-infos">Localisation</p><a
+                                href="https://maps.app.goo.gl/G4aCYhuXtsELDTCBA" target="_blank"
+                                class="infos-coordonnees">France, Lille (59000)</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="competences">
+            <div class="competences-list" id="competences" data-tilt data-tilt-reverse="true">
+                <h2 class="titreSectionCompétences">_Mes Compétences</h2>
+                <!--Mouse effect-->
+                <span id="circle" class="circle"></span>
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-file-code"></i>
+                        <p class="liste-competences comp1">Développer le front-End</p>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-file-code"></i>
+                        <p class="liste-competences comp2">Développer le back-End</p>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-file-code"></i>
+                        <p class="liste-competences comp3">Programmation Orientée Objet</p>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-file-code"></i>
+                        <p class="liste-competences comp4">Conception de base de données (Merise)</p>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-brain"></i>
+                        <p class="liste-competences comp5">Méthodologie SCRUM</p>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-brain"></i>
+                        <p class="liste-competences comp6">Esprit analytique</p>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-brain"></i>
+                        <p class="liste-competences comp7">Travail d'équipe</p>
+                    </li>
+                    <div id="smartphone-bar-language-link"></div>
+                    <li>
+                        <i class="fa-solid fa-brain"></i>
+                        <p class="liste-competences comp8">Analyse des besoins et problématiques</p>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-brain"></i>
+                        </i>
+                        <p class="liste-competences comp9">Architecture MVC (Model View Controller)</p>
+                    </li>
+                    <li>
+                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+                        </i>
+                        <p class="liste-competences comp10">Conception de solutions</p>
+                    </li>
+                    <li>
+                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+                        <p class="liste-competences comp11">Développement d'applications</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="language-icon-list" id="language" data-tilt data-tilt-reverse="true">
+                <h2 class="titreSectionLanguages">_Languages</h2>
+                <!--Mouse effect-->
+                <span id="circle" class="circle"></span>
+
+                <ul>
+                    <div id="smartphone-bar-experiences-link"></div>
+                    <li>
+                        <p class="language-icon-title">HTML</p><i class="fa-brands fa-html5"></i>
+                    </li>
+                    <li>
+                        <p class="language-icon-title">CSS</p><i class="fa-brands fa-css3-alt"></i>
+                    </li>
+                    <li>
+                        <p class="language-icon-title">JavaScript</p><i class="fa-brands fa-js"></i>
+                    </li>
+                    <li>
+                        <p class="language-icon-title">PHP</p><i class="fa-brands fa-php"></i>
+                    </li>
+                    <li>
+                        <p class="language-icon-title">JAVA</p><i class="fa-brands fa-java"></i>
+                    </li>
+                    <li>
+                        <p class="language-icon-title">Symfony</p><i class="fa-brands fa-symfony"></i>
+                    </li>
+                    <li>
+                        <p class="language-icon-title">SQL</p><i class="fa-solid fa-database"></i>
+                    </li>
+                    <li>
+                        <p class="language-icon-title">Git</p><i class="fa-brands fa-git-alt"></i>
+                    </li>
+                </ul>
+                <div id="side-bar-experiences-link"></div>
+            </div>
+        </div>
+
+
+
+
+        <div class="experiences" id="experiences" data-tilt data-tilt-reverse="true">
+            <!--Mouse effect-->
+            <span id="circle" class="circle"></span>
+
+            <h2 class="titreSectionExperiences">_Mes Experiences</h2>
+            <ul>
+                <li>
+                    <div class="date">
+                        <p class="job-date">04/2024<br>09/2024</p>
+                        <div class="exp-icon" id="expicon"></div>
+                        <div class="job-details">
+                            <div class="experiences-title">
+                                <p class="job job5">Développeur Back-End </p>
+                                <p class="job-workplace">Segula Technologies</p>
+                            </div>
+                            <p class="job-description descr5"> Développement d'applications internes basées sur
+                                Symfony, visant à simplifier et automatiser les tâches
+                                quotidiennes des employés<br>
+                                Mise en place de la gestion des rôles et des permissions</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="date">
+                        <p class="job-date">12/2023<br>03/2024</p>
+                        <div class="exp-icon" id="expicon"></div>
+                        <div class="job-details">
+                            <div class="experiences-title">
+                                <p class="job job4">Stage Développeur Full-Stack</p>
+                                <p class="job-workplace">DevFix</p>
+                            </div>
+                            <p class="job-description descr4">Développeur Symfony/Twig au sein d'une équipe de 4, utilisant la méthode SCRUM pour créer une application full-stack client/admin dédiée à la réparation d'appareils électroniques. 
+                                Cette application permet la création et la gestion de devis ainsi que de stocks.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="date">
+                        <p class="job-date">2018<br>2023</p>
+                        <div class="exp-icon" id="expicon"></div>
+                        <div class="job-details">
+                            <div class="experiences-title">
+                                <p class="job job1">Auto-entreprise</p>
+                                <p class="job-workplace">TLB-ELEC</p>
+                            </div>
+                            <p class="job-description descr1">
+                                Travaux d’électricité et réseau informatique : Appareillage complet d’une maison, tirage de câbles, installation d’un tableau électrique, mise en place d’un réseau informatique, branchement baie de brassage et prises ethernet.<br>Comptabilité : Gestion de la facturation, rédaction de courriers, prises des commandes, création de devis, traitement des factures.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                   
+                    <div id="smartphone-bar-formations-link"></div>
+                    <div id="side-bar-formations-link"></div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="formations" id="formations" data-tilt data-tilt-reverse="true">
+            <!--Mouse effect-->
+            <span id="circle" class="circle"></span>
+
+            <h2 class="titreSectionFormations">_Mes Formations</h2>
+            <ul>
+
+                <li>
+                    <div class="date">
+                        <p class="formation-date">À venir</p>
+                        <div class="diploma-icon" id="diploma-icon"></div>
+                        <div class="formation-details">
+                            <div class="formation-title">
+                                <p class="diploma formation3">Concepteur développeur d'application BAC +4</p>
+                                <p class="academy"></p>
+                            </div>
+                            <p class="formation-description formationDescr3">Je suis actuellement à la recherche d’une
+                                alternance en tant que développeur concepteur.</p>
+
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="date">
+                        <p class="formation-date">06/2023<br>03/2024</p>
+                        <div class="diploma-icon" id="diploma-icon"></div>
+                        <div class="formation-details">
+                            <div class="formation-title">
+                                <p class="diploma formation1">développeur Full-Stack</p>
+                                <p class="academy">AFPA</p>
+                            </div>
+                            <p class="formation-description formationDescr1">Ayant achevé ma formation en tant que
+                                développeur Web / Web Mobile, cette expérience m'a doté d'une base solide et de
+                                compétences essentielles en conception et développement web, ainsi qu'en création
+                                d'applications mobiles. Mon objectif est désormais d'appliquer ces compétences dans des
+                                projets professionnels et de continuer à élargir mes connaissances dans ce domaine en
+                                constante évolution.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="date">
+                        <p class="formation-date">09/2015<br>08/2017</p>
+                        <div class="diploma-icon" id="diploma-icon"></div>
+                        <div class="formation-details" id="side-bar-projets-link">
+                            <div class="formation-title">
+                                <p class="diploma formation4">BTS électrotechnique</p>
+                                <p class="academy">EIC</p>
+                            </div>
+                            <p class="formation-description formationDescr4">Au cours de mon BTS Conception des
+                                Processus de Réalisation de Produits, j'ai acquis des compétences en conception et
+                                gestion des processus de fabrication. Cela m'a permis de maîtriser des outils de
+                                conception industrielle avancés, ainsi que des méthodologies d'amélioration continue,
+                                telles que le 5S.</p>
+                        </div>
+                    </div>
+                    <div id="smartphone-bar-projets-link"></div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="projets" id="projets">
+            <div class="carousel">
+                <div class="carousel-controls">
+                    <input class="checked-colored" id="1" type="radio" name="controls" checked>
+                    <input id="2" type="radio" name="controls">
+                    <input id="3" type="radio" name="controls">
+                    <input id="4" type="radio" name="controls">
+                    <input id="5" type="radio" name="controls">
+                    <div class="dots">
+                        <label class="checked-colored" for="1"></label>
+                        <label for="2"></label>
+                        <label for="3"></label>
+                        <label for="4"></label>
+                        <label for="5"></label>
+                    </div>
+                    <div class="carousel-cards">
+
+                        <!-- Card 6 -->
+                        <div class="card" data-tilt data-tilt-reverse="true">
+                            <img src="public/images/devfix.png" alt="card-image">
+                            <div class="card-infos">
+                                <!-- Mouse effect -->
+                                <span class="circle"></span>
+
+                                <h2 class="titreSectionProjets">_Projets</h2>
+                                <hr>
+                                <h4>Twig / Symfony / CSS / JavaScript</h4>
+                                <h3>DevFix</h3>
+                                <p class="projectDescription6">
+                                    En tant que développeur Symfony/Twig au sein d'une équipe de 4 personnes, nous avons
+                                    utilisé la méthode
+                                    agile SCRUM pour concevoir une application full-stack client/administrateur destinée
+                                    aux réparateurs
+                                    d'électronique. Cette application permettait la création et la gestion complète des
+                                    devis et des stocks,
+                                    offrant ainsi une solution complète aux professionnels du secteur.
+                                </p>
+                                <a class="projectButton" href="" target="_blank">Voir</a>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="card" data-tilt data-tilt-reverse="true">
+                            <img src="public/images/5.png" alt="card-image">
+                            <div class="card-infos">
+                                <!-- Mouse effect -->
+                                <span class="circle"></span>
+
+                                <h2 class="titreSectionProjets">_Projets</h2>
+                                <hr>
+                                <h4>HTML / CSS / JavaScript / PHP</h4>
+                                <h3>Coffee Bank</h3>
+                                <p class="projectDescription5">
+                                    J'ai imaginé et conçu une application de gestion de comptes bancaires, incluant la
+                                    création, la simulation
+                                    de transactions et la manipulation des comptes, ainsi que la conception de la
+                                    maquette et de l'expérience
+                                    utilisateur. Le back-end agit comme une API, créant des comptes avec de la POO et
+                                    des héritages de classes,
+                                    à travers des requêtes HTTP. Le front-end communique avec cette API pour offrir une
+                                    interface interactive,
+                                    permettant la visualisation et la gestion des comptes bancaires.
+                                </p>
+                                <button class="projectButton"
+                                    onclick="window.open('')">voir</button>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="card" data-tilt data-tilt-reverse="true">
+                            <img src="public/images/neo-weather.jpg" alt="card-image">
+                            <div class="card-infos">
+                                <!-- Mouse effect -->
+                                <span class="circle"></span>
+
+                                <h2 class="titreSectionProjets">_Projets</h2>
+                                <hr>
+                                <h4>HTML / CSS / JavaScript</h4>
+                                <h3>Neo Weather</h3>
+                                <p class="projectDescription4">
+                                    Mon projet récent est une application météo détaillée couvrant 5 jours, avec des
+                                    données sur la qualité de
+                                    l'air et d'autres informations pertinentes, grâce à une API. Ce projet s'inspire
+                                    d'un tutoriel YouTube.
+                                </p>
+                                <button class="projectButton"
+                                    onclick="window.open('')">voir</button>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="card" data-tilt data-tilt-reverse="true">
+                            <img src="public/images/convert.png" alt="card-image">
+                            <div class="card-infos">
+                                <!-- Mouse effect -->
+                                <span class="circle"></span>
+
+                                <h2 class="titreSectionProjets">_Projets</h2>
+                                <hr>
+                                <h4>HTML / CSS / JavaScript</h4>
+                                <h3>ConvertEasy</h3>
+                                <p class="projectDescription3">
+                                    J'ai développé une application de conversion polyvalente qui permet de passer
+                                    facilement d'un système
+                                    numérique à un autre, y compris binaire, décimal, octal et hexadécimal. Cette
+                                    application intuitive
+                                    simplifie la conversion des nombres, quels que soient les formats, offrant une
+                                    expérience utilisateur fluide
+                                    et pratique.
+                                </p>
+                                <button class="projectButton"
+                                    onclick="window.open('')">voir</button>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="card" data-tilt data-tilt-reverse="true">
+                            <img src="public/images/card-2.png" alt="card-image">
+                            <div class="card-infos">
+                                <!-- Mouse effect -->
+                                <span class="circle"></span>
+
+                                <h2 class="titreSectionProjets">_Projets</h2>
+                                <hr>
+                                <h4>HTML / CSS / JavaScript</h4>
+                                <h3>Movie List</h3>
+                                <p class="projectDescription2">
+                                    J'ai conçu une application de gestion de films simplifiée, permettant de créer,
+                                    modifier et supprimer des
+                                    fiches de films. Les données des films, y compris les genres et les acteurs, sont
+                                    stockées localement dans
+                                    le navigateur, offrant une expérience simple pour gérer sa propre bibliothèque de
+                                    films. </p>
+                                <button class="projectButton"
+                                    onclick="window.open('')">voir</button>
+                            </div>
+                        </div>
+
+
+                        <div id="smartphone-bar-contact-link"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="contact" id="contact" data-tilt data-tilt-reverse="true">
+            <!--Mouse effect-->
+            <span id="circle" class="circle"></span>
+
+            <h2 id="side-bar-contact-link" class="titreSectionContact">_Contactez-moi!</h2>
+            <div class="contact-form-section">
+                <form action='' method='POST' name='contact'><input type='hidden' name='form-name' value='contact' />
+                    <ul>
+                        <li><input type="text" name="name" id="nom" placeholder="Saisissez votre nom" required></li>
+                        <li><input type="email" name="email" id="email-input" placeholder="Saisissez votre e-mail"
+                                required></li>
+                        <li><textarea name="message" id="message" rows="4" cols="50"
+                                placeholder="Saisissez votre message" required></textarea></li>
+                        <li><button class="contactButton" type="submit">Envoyer<i class="fa fa-paper-plane"
+                                    aria-hidden="true"></i></button></li>
+                    </ul>
+                </form>
+
+                <div class="google-map">
+                    <a href="https://maps.app.goo.gl/CUAR7mcPYZv2xSsA7" target="_blank"><img
+                            src="public/images/light_map.jpg" class="google-map-image" id="google-map-image"
+                            alt="google-map-image"></a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        <div class="sociallink-footer">
+            <ul>
+                <li><a href="https://www.linkedin.com/in/anthony-la-barbera-001146298/" target="_blank"><i class="fab fa-linkedin"
+                            alt="Linkdn logo"></i></a></li>
+                <li><a href="https://github.com/AnthonyRepo5/Portfolio.git" target="_blank"><i class="fab fa-github"
+                            alt="github logo"></i></a></li>
+                <li><a href="https://discord.com/" target="_blank"><i class="fab fa-discord"
+                            alt="discord logo"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+
+</html>
